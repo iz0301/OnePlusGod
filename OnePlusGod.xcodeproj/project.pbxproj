@@ -7,13 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		980DF74A207E6EAA0086E0FB /* CustomWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980DF749207E6EAA0086E0FB /* CustomWebView.swift */; };
+		983E6A8D207323A700F34579 /* RequestInfo.html in Resources */ = {isa = PBXBuildFile; fileRef = 983E6A8C207323A700F34579 /* RequestInfo.html */; };
+		984291B1207EDB65009469EB /* WebImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984291B0207EDB65009469EB /* WebImage.swift */; };
+		9851FA94205D652800A5CCDB /* OldNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9851FA93205D652800A5CCDB /* OldNews.swift */; };
+		9852C9F6206174C500CE9745 /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852C9F5206174C500CE9745 /* Register.swift */; };
+		9852C9FA2061772400CE9745 /* Donate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852C9F92061772400CE9745 /* Donate.swift */; };
+		9852C9FE20617B7A00CE9745 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9852C9FD20617B7A00CE9745 /* Assets.xcassets */; };
 		986B15002059BCF900F4E7D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986B14FF2059BCF900F4E7D3 /* AppDelegate.swift */; };
-		986B15022059BCF900F4E7D3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986B15012059BCF900F4E7D3 /* ViewController.swift */; };
-		986B15052059BCF900F4E7D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 986B15032059BCF900F4E7D3 /* Main.storyboard */; };
-		986B15072059BCF900F4E7D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 986B15062059BCF900F4E7D3 /* Assets.xcassets */; };
-		986B150A2059BCF900F4E7D3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 986B15082059BCF900F4E7D3 /* LaunchScreen.storyboard */; };
 		986B15152059BCF900F4E7D3 /* OnePlusGodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986B15142059BCF900F4E7D3 /* OnePlusGodTests.swift */; };
 		986B15202059BCF900F4E7D3 /* OnePlusGodUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986B151F2059BCF900F4E7D3 /* OnePlusGodUITests.swift */; };
+		9894438C207839B600A0C611 /* OptionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9894438B207839B600A0C611 /* OptionList.swift */; };
+		9894438E20783A7600A0C611 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9894438D20783A7600A0C611 /* Store.swift */; };
+		98B996392083B697006FAEE4 /* RequestTeaching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B996382083B697006FAEE4 /* RequestTeaching.swift */; };
+		98B9963B2083BC21006FAEE4 /* RequestMissionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B9963A2083BC21006FAEE4 /* RequestMissionary.swift */; };
+		98B9963D208437A1006FAEE4 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B9963C208437A1006FAEE4 /* News.swift */; };
+		98D28D5D20790FAF0000173E /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D28D5C20790FAF0000173E /* FormViewController.swift */; };
+		98D28D5F207918490000173E /* RequestTrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D28D5E207918490000173E /* RequestTrip.swift */; };
+		98D28D61207954970000173E /* RequestEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D28D60207954970000173E /* RequestEvent.swift */; };
+		98D28D632079B5700000173E /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98D28D622079B5700000173E /* Launch Screen.storyboard */; };
+		98F950B0207A7CAB00CFD5CD /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F950AF207A7CAB00CFD5CD /* Request.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,12 +47,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		980DF749207E6EAA0086E0FB /* CustomWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomWebView.swift; sourceTree = "<group>"; };
+		983E6A8C207323A700F34579 /* RequestInfo.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = RequestInfo.html; sourceTree = "<group>"; };
+		984291B0207EDB65009469EB /* WebImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImage.swift; sourceTree = "<group>"; };
+		9851FA93205D652800A5CCDB /* OldNews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldNews.swift; sourceTree = "<group>"; };
+		9852C9F5206174C500CE9745 /* Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
+		9852C9F92061772400CE9745 /* Donate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Donate.swift; sourceTree = "<group>"; };
+		9852C9FD20617B7A00CE9745 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		986B14FC2059BCF900F4E7D3 /* OnePlusGod.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnePlusGod.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		986B14FF2059BCF900F4E7D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		986B15012059BCF900F4E7D3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		986B15042059BCF900F4E7D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		986B15062059BCF900F4E7D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		986B15092059BCF900F4E7D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		986B150B2059BCF900F4E7D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		986B15102059BCF900F4E7D3 /* OnePlusGodTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OnePlusGodTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		986B15142059BCF900F4E7D3 /* OnePlusGodTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnePlusGodTests.swift; sourceTree = "<group>"; };
@@ -47,6 +63,17 @@
 		986B151B2059BCF900F4E7D3 /* OnePlusGodUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OnePlusGodUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		986B151F2059BCF900F4E7D3 /* OnePlusGodUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnePlusGodUITests.swift; sourceTree = "<group>"; };
 		986B15212059BCF900F4E7D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9894438B207839B600A0C611 /* OptionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionList.swift; sourceTree = "<group>"; };
+		9894438D20783A7600A0C611 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		98B996382083B697006FAEE4 /* RequestTeaching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTeaching.swift; sourceTree = "<group>"; };
+		98B9963A2083BC21006FAEE4 /* RequestMissionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMissionary.swift; sourceTree = "<group>"; };
+		98B9963C208437A1006FAEE4 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
+		98D28D5C20790FAF0000173E /* FormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewController.swift; sourceTree = "<group>"; };
+		98D28D5E207918490000173E /* RequestTrip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTrip.swift; sourceTree = "<group>"; };
+		98D28D60207954970000173E /* RequestEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestEvent.swift; sourceTree = "<group>"; };
+		98D28D622079B5700000173E /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		98F671EC20641D3900AFB20D /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		98F950AF207A7CAB00CFD5CD /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +108,7 @@
 				986B15132059BCF900F4E7D3 /* OnePlusGodTests */,
 				986B151E2059BCF900F4E7D3 /* OnePlusGodUITests */,
 				986B14FD2059BCF900F4E7D3 /* Products */,
+				98F671EB20641D3900AFB20D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,12 +125,18 @@
 		986B14FE2059BCF900F4E7D3 /* OnePlusGod */ = {
 			isa = PBXGroup;
 			children = (
-				986B14FF2059BCF900F4E7D3 /* AppDelegate.swift */,
-				986B15012059BCF900F4E7D3 /* ViewController.swift */,
-				986B15032059BCF900F4E7D3 /* Main.storyboard */,
-				986B15062059BCF900F4E7D3 /* Assets.xcassets */,
-				986B15082059BCF900F4E7D3 /* LaunchScreen.storyboard */,
+				983E6A8C207323A700F34579 /* RequestInfo.html */,
 				986B150B2059BCF900F4E7D3 /* Info.plist */,
+				986B14FF2059BCF900F4E7D3 /* AppDelegate.swift */,
+				9894438D20783A7600A0C611 /* Store.swift */,
+				9852C9F92061772400CE9745 /* Donate.swift */,
+				9851FA93205D652800A5CCDB /* OldNews.swift */,
+				98B9963C208437A1006FAEE4 /* News.swift */,
+				9852C9F5206174C500CE9745 /* Register.swift */,
+				98F950AF207A7CAB00CFD5CD /* Request.swift */,
+				98C49791207A7F28005B0264 /* BaseViewControllers */,
+				98C49792207A7F35005B0264 /* RequestViews */,
+				98C49793207A7F7E005B0264 /* Resources */,
 			);
 			path = OnePlusGod;
 			sourceTree = "<group>";
@@ -123,6 +157,45 @@
 				986B15212059BCF900F4E7D3 /* Info.plist */,
 			);
 			path = OnePlusGodUITests;
+			sourceTree = "<group>";
+		};
+		98C49791207A7F28005B0264 /* BaseViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				98D28D5C20790FAF0000173E /* FormViewController.swift */,
+				9894438B207839B600A0C611 /* OptionList.swift */,
+				980DF749207E6EAA0086E0FB /* CustomWebView.swift */,
+				984291B0207EDB65009469EB /* WebImage.swift */,
+			);
+			path = BaseViewControllers;
+			sourceTree = "<group>";
+		};
+		98C49792207A7F35005B0264 /* RequestViews */ = {
+			isa = PBXGroup;
+			children = (
+				98D28D5E207918490000173E /* RequestTrip.swift */,
+				98B996382083B697006FAEE4 /* RequestTeaching.swift */,
+				98B9963A2083BC21006FAEE4 /* RequestMissionary.swift */,
+				98D28D60207954970000173E /* RequestEvent.swift */,
+			);
+			path = RequestViews;
+			sourceTree = "<group>";
+		};
+		98C49793207A7F7E005B0264 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				98D28D622079B5700000173E /* Launch Screen.storyboard */,
+				9852C9FD20617B7A00CE9745 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		98F671EB20641D3900AFB20D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				98F671EC20641D3900AFB20D /* UserNotifications.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -188,7 +261,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Isaac Zachmann";
 				TargetAttributes = {
 					986B14FB2059BCF900F4E7D3 = {
@@ -232,9 +305,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				986B150A2059BCF900F4E7D3 /* LaunchScreen.storyboard in Resources */,
-				986B15072059BCF900F4E7D3 /* Assets.xcassets in Resources */,
-				986B15052059BCF900F4E7D3 /* Main.storyboard in Resources */,
+				98D28D632079B5700000173E /* Launch Screen.storyboard in Resources */,
+				983E6A8D207323A700F34579 /* RequestInfo.html in Resources */,
+				9852C9FE20617B7A00CE9745 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,7 +332,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				986B15022059BCF900F4E7D3 /* ViewController.swift in Sources */,
+				9894438E20783A7600A0C611 /* Store.swift in Sources */,
+				980DF74A207E6EAA0086E0FB /* CustomWebView.swift in Sources */,
+				984291B1207EDB65009469EB /* WebImage.swift in Sources */,
+				98B9963D208437A1006FAEE4 /* News.swift in Sources */,
+				9852C9FA2061772400CE9745 /* Donate.swift in Sources */,
+				98D28D61207954970000173E /* RequestEvent.swift in Sources */,
+				9894438C207839B600A0C611 /* OptionList.swift in Sources */,
+				98F950B0207A7CAB00CFD5CD /* Request.swift in Sources */,
+				98D28D5F207918490000173E /* RequestTrip.swift in Sources */,
+				9852C9F6206174C500CE9745 /* Register.swift in Sources */,
+				98B9963B2083BC21006FAEE4 /* RequestMissionary.swift in Sources */,
+				9851FA94205D652800A5CCDB /* OldNews.swift in Sources */,
+				98D28D5D20790FAF0000173E /* FormViewController.swift in Sources */,
+				98B996392083B697006FAEE4 /* RequestTeaching.swift in Sources */,
 				986B15002059BCF900F4E7D3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -295,25 +381,6 @@
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		986B15032059BCF900F4E7D3 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				986B15042059BCF900F4E7D3 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		986B15082059BCF900F4E7D3 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				986B15092059BCF900F4E7D3 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		986B15222059BCF900F4E7D3 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -329,6 +396,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -336,6 +404,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -386,6 +455,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -393,6 +463,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
