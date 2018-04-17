@@ -25,11 +25,9 @@ class News : UITableViewController, WebImageDelegate {
     convenience init(){
         self.init(nibName: nil, bundle: nil);
         self.title = "One Plus God";
-        
         let moreInfo = UIButton(type: .infoLight);
         moreInfo.addTarget(self, action: #selector(toTheWebsite), for: .touchUpInside);
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: moreInfo);
-        
         self.view.backgroundColor = .white;
     }
     
@@ -63,16 +61,10 @@ class News : UITableViewController, WebImageDelegate {
         //self.view.addSubview(feed);
     }
     
-    // Function handels when the frame is resized (i.e. rotation):
-    /*override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-     .frame.size = size;
-     }*/
-    
-    //Called when a row is selected
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        /*print("Num: \(indexPath.row)")
-         print("Value: \(myArray[indexPath.row])")*/
-        //let cell = tableView.cellForRow(at: indexPath);
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        super.viewWillTransition(to: size, with: coordinator);
+        self.didFinishLoadingImages();
     }
     
     // Should return the number of cells
@@ -83,24 +75,22 @@ class News : UITableViewController, WebImageDelegate {
     // Called when the table needs a cell, probably nothing needs changed here. Change stuff in NewsCell classs
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Identifier", for: indexPath as IndexPath);
-        cell.textLabel?.text = newsItems[indexPath.item].title;
-        cell.detailTextLabel?.text = newsItems[indexPath.item].content;
         
-        if(newsItems[indexPath.item].media != nil){
-            (cell as! NewsCell).mediaView.image = newsItems[indexPath.item].media?.image;
-            cell.setNeedsLayout();
-            cell.layoutIfNeeded();
-        }
-        
-        cell.setNeedsLayout();
-        cell.layoutIfNeeded();
-        print( cell.contentView.frame.size.height);
-        
+        (cell as! NewsCell).reinit();
+        (cell as! NewsCell).contentView.layoutSubviews();
+        (cell as! NewsCell).prepareToShow(from: newsItems[indexPath.item]);
+        cell.layoutSubviews();
         return cell;
     }
     
     func didFinishLoadingImages() {
         DispatchQueue.main.async {
+            for i in 0...(self.tableView.visibleCells.count - 1){
+                (self.tableView.visibleCells[i] as! NewsCell).reinit();
+                (self.tableView.visibleCells[i] as! NewsCell).contentView.layoutSubviews();
+                (self.tableView.visibleCells[i] as! NewsCell).prepareToShow(from: self.newsItems[(self.tableView.indexPath(for: self.tableView.visibleCells[i])?.item)!]);
+                self.tableView.visibleCells[i].layoutSubviews();
+            }
             self.tableView.reloadData();
         }
     }
@@ -134,7 +124,6 @@ struct NewsItem {
             print("Error getting news");
             newses.append(NewsItem(title: "Error", content: "Could not load news right now. Please try again later.", media: nil));
         }
-        
         return newses;
     }
     
@@ -144,43 +133,64 @@ struct NewsItem {
 class NewsCell : UITableViewCell {
     
     var mediaView = CustomUIImageView();
+    var title = UILabel();
+    var content = UILabel();
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?){
-        super.init(style: UITableViewCellStyle.subtitle, reuseIdentifier: "Identifier");
-        self.textLabel?.numberOfLines = 0;
-        self.detailTextLabel?.numberOfLines = 0;
+        super.init(style: .default, reuseIdentifier: "Identifier");
+        reinit();
+    }
+    
+    func reinit(){
+        title.removeFromSuperview();
+        content.removeFromSuperview();
+        mediaView.removeFromSuperview();
         
+        title = UILabel();
+        content = UILabel();
+        mediaView = CustomUIImageView();
+        
+        title.font = UIFont.boldSystemFont(ofSize: title.font.pointSize + 2);
+        title.numberOfLines = 0;
+        content.numberOfLines = 0;
+        
+        self.contentView.addSubview(title);
+        self.contentView.addSubview(content);
         self.contentView.addSubview(mediaView);
         
         mediaView.contentMode = .scaleAspectFit;
         mediaView.translatesAutoresizingMaskIntoConstraints = false;
         mediaView.widthAnchor.constraint(equalTo: self.contentView.widthAnchor, constant: -20).isActive = true;
         mediaView.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor, constant: 0).isActive = true;
-        mediaView.topAnchor.constraint(equalTo: self.detailTextLabel!.bottomAnchor, constant: 10).isActive = true;
+        mediaView.topAnchor.constraint(equalTo: content.bottomAnchor, constant: 10).isActive = true;
         mediaView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -10).isActive = true;
         
-        self.textLabel?.translatesAutoresizingMaskIntoConstraints = false;
-        self.textLabel?.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 10).isActive = true;
-        self.textLabel?.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -10).isActive = true;
-        self.textLabel?.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10).isActive = true;
+        content.translatesAutoresizingMaskIntoConstraints = false;
+        content.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 10).isActive = true;
+        content.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -10).isActive = true;
+        content.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 5).isActive = true;
         
-        self.detailTextLabel?.translatesAutoresizingMaskIntoConstraints = false;
-        self.detailTextLabel?.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 10).isActive = true;
-        self.detailTextLabel?.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -10).isActive = true;
-        self.detailTextLabel?.topAnchor.constraint(equalTo: (self.textLabel?.bottomAnchor)!, constant: 10).isActive = true;
+        title.translatesAutoresizingMaskIntoConstraints = false;
+        title.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 10).isActive = true;
+        title.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -10).isActive = true;
+        title.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10).isActive = true;
         
-        /*self.contentView.translatesAutoresizingMaskIntoConstraints = false;
-        self.contentView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true;
-        self.contentView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true;
-        self.contentView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true;
-        self.contentView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true;*/
-        
-        self.setNeedsLayout();
-        self.layoutIfNeeded();
+        self.layoutSubviews();
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder);
+    }
+    
+    func prepareToShow(from: NewsItem){
+        self.title.text =  from.title;
+        self.content.text =  from.content;
+        if(from.media != nil){
+            mediaView.image = from.media?.image;
+            layoutSubviews();
+        } else {
+            mediaView.image = nil;
+        }
     }
     
 }

@@ -365,8 +365,7 @@ class OccurrenceItemView : UITableViewController {
         super.viewWillTransition(to: size, with: coordinator);
         
         for i in 0...(mediaCells.count - 1) {
-            mediaCells[i].contentView.setNeedsLayout();
-            mediaCells[i].contentView.layoutIfNeeded();
+            mediaCells[i].contentView.layoutSubviews();
         }
         tableView.reloadData();
     }
@@ -462,6 +461,7 @@ class CustomUIImageView : UIImageView {
             self.superview?.layoutSubviews();
             if((image?.size.width)! > self.frame.size.width){
                 let scale = self.frame.size.width / (image?.size.width)!
+                print(CGSize(width: scale * (image?.size.width)!, height: scale * image!.size.height));
                 return CGSize(width: scale * (image?.size.width)!, height: scale * image!.size.height);
             } else {
                 return image!.size;

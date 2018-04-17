@@ -17,6 +17,7 @@ protocol WebImageDelegate {
  */
 class WebImage {
     
+    private static var allImages = NSCache<NSString, UIImage>();
     var image : UIImage?;
     var delegate : WebImageDelegate;
     
@@ -25,11 +26,16 @@ class WebImage {
     */
     init(fromURL: String, delegate: WebImageDelegate) {
         self.delegate = delegate;
+        if(WebImage.allImages.object(forKey: fromURL as NSString) != nil){
+            self.image = WebImage.allImages.object(forKey: fromURL as NSString);
+            return;
+        }
         image = #imageLiteral(resourceName: "Loading");
          DispatchQueue.global(qos: .background).async {
             do {
                 let imageData:NSData = try NSData(contentsOf: URL(string: fromURL)!);
                 self.image = UIImage(data: imageData as Data);
+                WebImage.allImages.setObject(self.image!, forKey: fromURL as NSString);
                 self.delegate.didFinishLoadingImages();
             } catch {
                 self.image = #imageLiteral(resourceName: "Fail");
