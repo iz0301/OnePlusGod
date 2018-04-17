@@ -114,9 +114,14 @@ struct NewsItem {
             let rawNewsData = data.components(separatedBy: "\n###EON###\n");
             for rawData in rawNewsData {
                 if(rawData != "" && rawData.components(separatedBy: "::").count >= 2){
-                    var newsItem = NewsItem(title: "", content: "", media: WebImage.init(fromURL: "https://static.pexels.com/photos/248797/pexels-photo-248797.jpeg", delegate: onImageLoad));
+                    var newsItem = NewsItem(title: "", content: "", media: nil);
                     newsItem.title = rawData.components(separatedBy: "::")[0];
-                    newsItem.content = rawData.components(separatedBy: "::")[1];
+                    newsItem.content = rawData.components(separatedBy: "::")[2];
+                    if(rawData.components(separatedBy: "::")[1] != ""){
+                        newsItem.media = WebImage(fromURL: rawData.components(separatedBy: "::")[1], delegate: onImageLoad);
+                    } else {
+                        newsItem.media = nil;
+                    }
                     newses.append(newsItem);
                 }
             }

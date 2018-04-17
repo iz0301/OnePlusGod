@@ -43,5 +43,41 @@ class WebImage {
             }
         };
     }
+}
+
+
+/**
+ A custom UIImageView that automaticially sets its intrinsicContentSize to fit the image well
+ */
+class CustomUIImageView : UIImageView {
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        if(image != nil){
+            if(self.frame.size.height <= 0){
+                self.frame.size = image!.size;
+            }
+            //Recalculates the frame.size before figuring.
+            self.superview?.layoutSubviews();
+            if((image?.size.width)! > self.frame.size.width){
+                let scale = self.frame.size.width / (image?.size.width)!
+                return CGSize(width: scale * (image?.size.width)!, height: scale * image!.size.height);
+            } else {
+                return image!.size;
+            }
+        }
+        return .zero;
+    }
+    
+    //Implement later:
+    /*override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+     if(action == #selector(UIResponderStandardEditActions.copy(_:))){
+     return true;
+     }
+     return super.canPerformAction(action, withSender: sender);
+     }*/
     
 }
