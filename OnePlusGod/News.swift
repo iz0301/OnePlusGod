@@ -110,7 +110,7 @@ struct NewsItem {
         
         do {
             let url = NSURL(string: myURLString);
-            let data = try String(contentsOf: url! as URL, encoding: String.Encoding(rawValue: 1));
+            let data = try String(contentsOf: url! as URL, encoding: String.Encoding.utf8);
             let rawNewsData = data.components(separatedBy: "\n###EON###\n");
             for rawData in rawNewsData {
                 if(rawData != "" && rawData.components(separatedBy: "::").count >= 2){

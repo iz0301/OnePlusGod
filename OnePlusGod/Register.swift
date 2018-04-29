@@ -179,7 +179,7 @@ struct OccuranceItem {
      :EndOfTitle:
      http://thisistheimageurl.com/
      :EndOfImage:
-     mm/dd/yyyy hh:mm:ss:::mm/dd/yyyy hh:mm:ss
+     mm/dd/yyyy hh:mm:::mm/dd/yyyy hh:mm
      :EndOfDates:
      1234 Address road
      city
@@ -199,7 +199,7 @@ struct OccuranceItem {
         var occurrences = [OccuranceItem]();
         do {
             let url = NSURL(string: fromURL);
-            let allRawData = try String(contentsOf: url! as URL, encoding: String.Encoding(rawValue: 1));
+            let allRawData = try String(contentsOf: url! as URL, encoding: String.Encoding.utf8);
             let rawDatas = allRawData.components(separatedBy: "\n###EON###\n");
             for rawData in rawDatas {
                 if(rawData == ""){
@@ -236,7 +236,7 @@ struct OccuranceItem {
                 var endDate = "";
                 
                 let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "MM/dd/yyyy HH:mm:ss";
+                dateFormatter.dateFormat = "MM/dd/yyyy HH:mm";
                 dateFormatter.timeZone = TimeZone(abbreviation: "EDT");
                 let startDateDate = dateFormatter.date(from: startDateRaw);
                 let endDateDate = dateFormatter.date(from: endDateRaw);
@@ -253,7 +253,9 @@ struct OccuranceItem {
                 if(media != ""){
                     for i in 0...(media.components(separatedBy: "\n").count - 1) {
                         let mediaURL = media.components(separatedBy: "\n")[i];
-                        mediaImages.append(WebImage(fromURL: mediaURL, delegate: webImagesDelegate));
+                        if(mediaURL != ""){
+                            mediaImages.append(WebImage(fromURL: mediaURL, delegate: webImagesDelegate));
+                        }
                     }
                 }
                 

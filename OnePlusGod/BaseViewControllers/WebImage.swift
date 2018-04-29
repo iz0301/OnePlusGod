@@ -33,10 +33,13 @@ class WebImage {
         image = #imageLiteral(resourceName: "Loading");
          DispatchQueue.global(qos: .background).async {
             do {
-                let imageData:NSData = try NSData(contentsOf: URL(string: fromURL)!);
-                self.image = UIImage(data: imageData as Data);
-                WebImage.allImages.setObject(self.image!, forKey: fromURL as NSString);
-                self.delegate.didFinishLoadingImages();
+                let url = URL(string: fromURL);
+                if(url != nil){
+                    let imageData:NSData = try NSData(contentsOf: url!);
+                    self.image = UIImage(data: imageData as Data);
+                    WebImage.allImages.setObject(self.image!, forKey: fromURL as NSString);
+                    self.delegate.didFinishLoadingImages();
+                }
             } catch {
                 self.image = #imageLiteral(resourceName: "Fail");
                 self.delegate.didFinishLoadingImages();
@@ -51,9 +54,16 @@ class WebImage {
  */
 class CustomUIImageView : UIImageView {
     
+    /*init(){
+        super.init(frame: .zero);
+        self.isUserInteractionEnabled = true;
+        let tap = UITapGestureRecognizer(target: self, action: #selector(onTap));
+        self.addGestureRecognizer(tap);
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
+    }*/
     
     override var intrinsicContentSize: CGSize {
         if(image != nil){

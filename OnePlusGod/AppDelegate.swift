@@ -128,15 +128,17 @@ class LocalNotificationHandler {
         let myURLString = AppDelegate.server + "/app/notifications";
         do {
             let url = NSURL(string: myURLString);
-            let data = try String(contentsOf: url! as URL, encoding: String.Encoding(rawValue: 1));
+            let data = try String(contentsOf: url! as URL, encoding: String.Encoding.utf8);
             let rawNewsData = data.components(separatedBy: "\n###EON###\n");
             var count = 1;
             for rawData in rawNewsData {
+                if(rawData != ""){
                 let notificationItem = UNMutableNotificationContent();
                 let datas = rawData.components(separatedBy: "::");
                 
-                //ex date from server:        05/24/2016 15:43:28
-                let second = Int(datas[0].components(separatedBy: " ")[1].components(separatedBy: ":")[2]);
+                //ex date from server:        05/24/2016 15:43
+                //let second = Int(datas[0].components(separatedBy: " ")[1].components(separatedBy: ":")[2]);
+                let second = 0;
                 let minute = Int(datas[0].components(separatedBy: " ")[1].components(separatedBy: ":")[1]);
                 let hour = Int(datas[0].components(separatedBy: " ")[1].components(separatedBy: ":")[0]);
                 let day = Int(datas[0].components(separatedBy: " ")[0].components(separatedBy: "/")[1]);
@@ -145,8 +147,7 @@ class LocalNotificationHandler {
                 let date = DateComponents(year: year, month: month, day: day, hour: hour, minute: minute, second: second);
                 
                 notificationItem.title = String(datas[1]);
-                notificationItem.subtitle = String(datas[2]);
-                notificationItem.body = String(datas[3]);
+                notificationItem.body = String(datas[2]);
                 notificationItem.sound = UNNotificationSound.default();
                 
                 let time = Calendar.current.date(from: date)?.timeIntervalSinceNow;
@@ -154,6 +155,7 @@ class LocalNotificationHandler {
                     let trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(time!), repeats: false);
                     notifications.append(UNNotificationRequest(identifier: String(count), content: notificationItem, trigger: trigger));
                     count += 1;
+                }
                 }
             }
         } catch {

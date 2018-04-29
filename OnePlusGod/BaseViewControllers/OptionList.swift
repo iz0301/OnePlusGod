@@ -41,11 +41,39 @@ class OptionList : UITableViewController {
 }
 
 class OptionListItemCell : UITableViewCell {
+
+    var customImageView = UIImageView();
+    var customLabel = UILabel();
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?){
         super.init(style: .default, reuseIdentifier: "Option");
-        textLabel?.numberOfLines = 0;
+        
+        customLabel.numberOfLines = 0;
+        customLabel.lineBreakMode = .byWordWrapping;
+        
+        customImageView.contentMode = .scaleToFill;
+        customImageView.clipsToBounds = true;
+        
         accessoryType = .disclosureIndicator;
+        
+        contentView.addSubview(customImageView);
+        contentView.addSubview(customLabel);
+        
+        customImageView.translatesAutoresizingMaskIntoConstraints = false;
+        customLabel.translatesAutoresizingMaskIntoConstraints = false;
+        
+        customImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true;
+        customImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true;
+        customImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10).isActive = true;
+        
+        customImageView.heightAnchor.constraint(equalToConstant: 100).isActive = true;
+        customImageView.widthAnchor.constraint(equalToConstant: 100).isActive = true;
+        
+        customLabel.leftAnchor.constraint(equalTo: customImageView.rightAnchor, constant: 10).isActive = true;
+        customLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: 0).isActive = true;
+        customLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10).isActive = true;
+        
+        layoutSubviews();
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -53,8 +81,16 @@ class OptionListItemCell : UITableViewCell {
     }
     
     func prepareToShow(from: OptionListItem){
-        imageView?.image = from.image;
-        textLabel?.text = from.title;
+        customLabel.text = from.title;
+        customImageView.image = from.image;
+        if(from.image == nil){
+            customImageView.heightAnchor.constraint(equalToConstant: 100).isActive = true;
+            customImageView.widthAnchor.constraint(equalToConstant: 0).isActive = true;
+        } else {
+            customImageView.heightAnchor.constraint(equalToConstant: 100).isActive = true;
+            customImageView.widthAnchor.constraint(equalToConstant: 100).isActive = true;
+        }
+        layoutSubviews();
     }
 }
 
