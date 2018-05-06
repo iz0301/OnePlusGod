@@ -11,6 +11,13 @@ import WebKit
 
 class Store : CustomWebViewController, UIScrollViewDelegate {
     let storeURL = "https://www.oneplusgod.org/store/";
+    let cartURL = "https://www.oneplusgod.org/cart";
+    
+    @objc func checkout(){
+        if(webView.url != URL(string: cartURL)){
+            loadFromURL(url: cartURL);
+        }
+    }
     
     override init(){
         super.init();
@@ -20,11 +27,18 @@ class Store : CustomWebViewController, UIScrollViewDelegate {
         
         webView.allowsBackForwardNavigationGestures = true;
         
-        let homeButton = UIButton();
-        homeButton.setImage(#imageLiteral(resourceName: "AboutIcon"), for: .normal);
-        homeButton.setImage(#imageLiteral(resourceName: "AboutIcon"), for: .selected);
+        let homeButton = UIButton(type: .custom);
+        homeButton.setImage(#imageLiteral(resourceName: "StoreIcon").withRenderingMode(.alwaysTemplate), for: .normal);
+        homeButton.tintColor = .white;
+        //homeButton.setImage(#imageLiteral(resourceName: "StoreIcon"), for: .selected);
         homeButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(home)))
         
+        let checkoutButton = UIButton(type: .custom);
+        checkoutButton.setImage(#imageLiteral(resourceName: "CheckoutIcon").withRenderingMode(.alwaysTemplate), for: .normal);
+        checkoutButton.tintColor = .white;
+        checkoutButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(checkout)))
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: checkoutButton);
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: homeButton);
     }
     

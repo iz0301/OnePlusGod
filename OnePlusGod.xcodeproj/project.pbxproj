@@ -10,7 +10,6 @@
 		980DF74A207E6EAA0086E0FB /* CustomWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 980DF749207E6EAA0086E0FB /* CustomWebView.swift */; };
 		983E6A8D207323A700F34579 /* RequestInfo.html in Resources */ = {isa = PBXBuildFile; fileRef = 983E6A8C207323A700F34579 /* RequestInfo.html */; };
 		984291B1207EDB65009469EB /* WebImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984291B0207EDB65009469EB /* WebImage.swift */; };
-		9851FA94205D652800A5CCDB /* OldNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9851FA93205D652800A5CCDB /* OldNews.swift */; };
 		9852C9F6206174C500CE9745 /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852C9F5206174C500CE9745 /* Register.swift */; };
 		9852C9FA2061772400CE9745 /* Donate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9852C9F92061772400CE9745 /* Donate.swift */; };
 		9852C9FE20617B7A00CE9745 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9852C9FD20617B7A00CE9745 /* Assets.xcassets */; };
@@ -50,7 +49,6 @@
 		980DF749207E6EAA0086E0FB /* CustomWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomWebView.swift; sourceTree = "<group>"; };
 		983E6A8C207323A700F34579 /* RequestInfo.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = RequestInfo.html; sourceTree = "<group>"; };
 		984291B0207EDB65009469EB /* WebImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebImage.swift; sourceTree = "<group>"; };
-		9851FA93205D652800A5CCDB /* OldNews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldNews.swift; sourceTree = "<group>"; };
 		9852C9F5206174C500CE9745 /* Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
 		9852C9F92061772400CE9745 /* Donate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Donate.swift; sourceTree = "<group>"; };
 		9852C9FD20617B7A00CE9745 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -130,7 +128,6 @@
 				986B14FF2059BCF900F4E7D3 /* AppDelegate.swift */,
 				9894438D20783A7600A0C611 /* Store.swift */,
 				9852C9F92061772400CE9745 /* Donate.swift */,
-				9851FA93205D652800A5CCDB /* OldNews.swift */,
 				98B9963C208437A1006FAEE4 /* News.swift */,
 				9852C9F5206174C500CE9745 /* Register.swift */,
 				98F950AF207A7CAB00CFD5CD /* Request.swift */,
@@ -343,7 +340,6 @@
 				98D28D5F207918490000173E /* RequestTrip.swift in Sources */,
 				9852C9F6206174C500CE9745 /* Register.swift in Sources */,
 				98B9963B2083BC21006FAEE4 /* RequestMissionary.swift in Sources */,
-				9851FA94205D652800A5CCDB /* OldNews.swift in Sources */,
 				98D28D5D20790FAF0000173E /* FormViewController.swift in Sources */,
 				98B996392083B697006FAEE4 /* RequestTeaching.swift in Sources */,
 				986B15002059BCF900F4E7D3 /* AppDelegate.swift in Sources */,

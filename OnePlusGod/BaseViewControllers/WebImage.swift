@@ -37,7 +37,11 @@ class WebImage {
                 if(url != nil){
                     let imageData:NSData = try NSData(contentsOf: url!);
                     self.image = UIImage(data: imageData as Data);
-                    WebImage.allImages.setObject(self.image!, forKey: fromURL as NSString);
+                    if(self.image != nil){
+                        WebImage.allImages.setObject(self.image!, forKey: fromURL as NSString);
+                    } else {
+                        self.image = #imageLiteral(resourceName: "Fail");
+                    }
                     self.delegate.didFinishLoadingImages();
                 }
             } catch {

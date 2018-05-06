@@ -13,10 +13,20 @@ import CFNetwork
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    static var server = "http://zachmannhome.com";
+    static var server = "https://ironic-objectivist-202915.appspot.com";
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions:       [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        UINavigationBar.appearance().barTintColor = .blue;
+        UINavigationBar.appearance().tintColor = .white;
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white];
+        
+        UITabBar.appearance().barTintColor = .blue;
+        UITabBar.appearance().tintColor = .gray;
+        UITabBar.appearance().unselectedItemTintColor = .white;
+        
+        UIApplication.shared.statusBarStyle = .lightContent
         
         // Construct inital view, create a window
         window = UIWindow(frame: UIScreen.main.bounds);
@@ -89,8 +99,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabs.tabBar.items?[0].image = #imageLiteral(resourceName: "NewsIcon");
         tabs.tabBar.items?[1].image = #imageLiteral(resourceName: "RegisterIcon");
         tabs.tabBar.items?[2].image = #imageLiteral(resourceName: "RequestIcon");
-        tabs.tabBar.items?[3].image = #imageLiteral(resourceName: "RequestIcon");
-        tabs.tabBar.items?[4].image = #imageLiteral(resourceName: "AboutIcon");
+        tabs.tabBar.items?[3].image = #imageLiteral(resourceName: "DonateIcon");
+        tabs.tabBar.items?[4].image = #imageLiteral(resourceName: "StoreIcon");
         
         window!.rootViewController = tabs;
         window!.makeKeyAndVisible();

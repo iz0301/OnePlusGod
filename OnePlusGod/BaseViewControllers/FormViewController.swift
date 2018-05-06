@@ -15,8 +15,8 @@ class FormViewController : UITableViewController, UITextFieldDelegate {
      */
     var formItems : [[FormViewItem]] = [];
     /**
-        An array to hold the section titles, use getter and setter methods when possible for error catching
-    */
+     An array to hold the section titles, use getter and setter methods when possible for error catching
+     */
     var sectionTitles : [String] = [];
     
     @objc func hideInfo(){
@@ -63,8 +63,8 @@ class FormViewController : UITableViewController, UITextFieldDelegate {
     }
     
     /**
-        Sets the title for the specified section, if it doesnt exist, create it
-    */
+     Sets the title for the specified section, if it doesnt exist, create it
+     */
     func setSectionTitle(title: String, forSection: Int){
         if(forSection > (formItems.count - 1)){
             setNumberOfSections(number: forSection + 1);
@@ -73,7 +73,7 @@ class FormViewController : UITableViewController, UITextFieldDelegate {
     }
     
     /**
-        sets the number of sections in the form. Either adds new sections to the end, or removes them from the end.
+     sets the number of sections in the form. Either adds new sections to the end, or removes them from the end.
      */
     func setNumberOfSections(number: Int){
         while(formItems.count < number){
@@ -87,31 +87,31 @@ class FormViewController : UITableViewController, UITextFieldDelegate {
     }
     
     /**
-        Returns the number of sections
-    */
+     Returns the number of sections
+     */
     func getNumberOfSections() -> Int {
         return formItems.count;
     }
     
     
     /**
-        Returns the number of items in a section
+     Returns the number of items in a section
      */
     func getNumberOfItems(inSection: Int) -> Int {
         return formItems[inSection].count;
     }
     
     /**
-        Gets the item at the index path
-    */
+     Gets the item at the index path
+     */
     func getItem(at: IndexPath) -> FormViewItem{
         return formItems[at.section][at.item];
     }
     
     /**
-        Sets the number of form items in the section. Either adds items to the end or removes them.
-        If section is out of bounds then create it.
-    */
+     Sets the number of form items in the section. Either adds items to the end or removes them.
+     If section is out of bounds then create it.
+     */
     func setNumberOfItems(number: Int, inSection: Int){
         if(inSection > (formItems.count - 1)){
             setNumberOfSections(number: inSection + 1);
@@ -126,7 +126,7 @@ class FormViewController : UITableViewController, UITextFieldDelegate {
     
     /**
      Updates the FormViewItem values with values entered in text boxes, only updates for cells onscreen because values are updated when cells leave
-    */
+     */
     func updateValues() {
         for sectionNum in 0...(formItems.count - 1){
             for itemNum in 0...(formItems[sectionNum].count - 1) {
@@ -138,8 +138,8 @@ class FormViewController : UITableViewController, UITextFieldDelegate {
     }
     
     /**
-        Sets an item for the from from a FormViewItem at the specified IndexPath. If index path is out of range, sections and items will be created up to the specified index
-    */
+     Sets an item for the from from a FormViewItem at the specified IndexPath. If index path is out of range, sections and items will be created up to the specified index
+     */
     func setItemAtIndexPath(item: FormViewItem, indexPath: IndexPath){
         if(indexPath.section > (formItems.count - 1)) {
             setNumberOfSections(number: (indexPath.section + 1));
@@ -257,7 +257,7 @@ class FormViewController : UITableViewController, UITextFieldDelegate {
     
     /**
      Clears all the form inputs and resets the picker views
-    */
+     */
     func clearAllInputs(){
         for sectionNum in 0...(formItems.count - 1){
             for itemNum in 0...(formItems[sectionNum].count - 1){
@@ -270,6 +270,68 @@ class FormViewController : UITableViewController, UITextFieldDelegate {
                 }
             }
         }
+    }
+    
+    func emailResults(address: String) {
+        var request = URLRequest(url: URL(string: AppDelegate.server + "/app/sendRequestEmail.php")!);
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type");
+        request.httpMethod = "POST";
+        var dataString = self.title! + ":NEWLINE:";
+        for sectionNum in 0...(getNumberOfSections() - 1){
+            for itemNum in 0...(getNumberOfItems(inSection: sectionNum) - 1) {
+                let item = getItem(at: IndexPath(item: itemNum, section: sectionNum));
+                dataString += item.title + ": " + item.value + ":NEWLINE:";
+            }
+        }
+        request.httpBody = ("data=" + dataString + "&email=" + address).data(using: .utf8);
+        
+        let task = URLSession.shared.dataTask(with: request, completionHandler: {(data, response, error) in
+            //dismiss "submitting..."
+            self.dismiss(animated: true, completion: {() in
+                DispatchQueue.main.async {
+                    if(data != nil && String.init(data: data!, encoding: .utf8) == "Success"){
+                        let alert = UIAlertController(title: "Complete!", message: "Your response has been submitted.", preferredStyle: .alert);
+                        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { (UIActionAlert) in
+                            self.viewDidLoad();
+                            self.view.becomeFirstResponder();
+                            self.navigationController?.dismiss(animated: true, completion: nil);
+                            self.navigationController?.popToViewController(self, animated: true);
+                            self.tableView.reloadData();
+                        }));
+                        self.present(alert, animated: true, completion: nil);
+                        self.clearAllInputs();
+                        return;
+                    }
+                    if(error != nil && (error! as NSError).code == NSURLErrorCancelled){
+                        self.viewDidLoad();
+                        self.view.becomeFirstResponder();
+                        self.navigationController?.dismiss(animated: true, completion: nil);
+                        self.navigationController?.popToViewController(self, animated: true);
+                        self.tableView.reloadData();
+                        return;
+                    }
+                    let fail = UIAlertController(title: "Failed", message: "An error has occured and your response could not be submitted. Please try again later.", preferredStyle: .alert);
+                    fail.addAction(UIAlertAction(title: "Okay", style: .default, handler: { (UIActionAlert) in
+                        self.viewDidLoad();
+                        self.view.becomeFirstResponder();
+                        self.navigationController?.dismiss(animated: true, completion: nil);
+                        self.navigationController?.popToViewController(self, animated: true);
+                        self.tableView.reloadData();
+                    }));
+                    self.present(fail, animated: true, completion: nil);
+                }
+            });
+        });
+        
+        
+        
+        
+        let submitting = UIAlertController(title: "Submitting...", message: "Please wait while your response is being submitted.", preferredStyle: .alert);
+        submitting.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { (UIActionAlert) in
+            task.cancel();
+        }));
+        self.present(submitting, animated: true, completion: nil);
+        task.resume();
     }
 }
 
@@ -292,12 +354,12 @@ struct FormViewItem {
     
     /**
      The autocorrection type to use in the input field. ignored for a picker
-    */
+     */
     var autocorrectionType : UITextAutocorrectionType;
     
     /**
-    The autocapitalization type to use for the input field. ignored for a picker
-    */
+     The autocapitalization type to use for the input field. ignored for a picker
+     */
     var autocapitalizationType : UITextAutocapitalizationType;
     
     /**

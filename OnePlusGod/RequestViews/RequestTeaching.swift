@@ -59,6 +59,7 @@ class RequestTeaching : FormViewController {
         
         let nextButton = UIButton(type: .custom);
         nextButton.setTitle("Next", for: .normal);
+        nextButton.tintColor = .white;
         nextButton.setTitleColor(nextButton.tintColor, for: .normal);
         nextButton.addTarget(self, action: #selector(reviewAndSubmit), for: .touchUpInside)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: nextButton);
@@ -146,6 +147,7 @@ class RequestTeaching : FormViewController {
         
         let submitButton = UIButton(type: .custom);
         submitButton.setTitle("Submit", for: .normal);
+        submitButton.tintColor = .white;
         submitButton.setTitleColor(submitButton.tintColor, for: .normal);
         submitButton.addTarget(self, action: #selector(submitForm), for: .touchUpInside);
         review.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: submitButton);
@@ -154,22 +156,7 @@ class RequestTeaching : FormViewController {
     }
     
     @objc func submitForm(){
-        //TODO: Do something with values;
-        for sectionNum in 0...(formItems.count - 1) {
-            for itemNum in 0...(formItems[sectionNum].count - 1){
-                let item = getItem(at: IndexPath(item: itemNum, section: sectionNum));
-                clearAllInputs();
-            }
-        }
-        let alert = UIAlertController(title: "Complete!", message: "Your response has been submitted.", preferredStyle: .alert);
-        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { (UIActionAlert) in
-            self.viewDidLoad();
-            self.view.becomeFirstResponder();
-            self.navigationController?.dismiss(animated: true, completion: nil);
-            self.navigationController?.popToViewController(self, animated: true);
-            self.tableView.reloadData();
-        }));
-        self.present(alert, animated: true, completion: nil);
+        emailResults(address: "");
         
     }
 }

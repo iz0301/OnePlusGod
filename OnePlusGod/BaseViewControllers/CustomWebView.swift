@@ -25,11 +25,12 @@ class CustomWebViewController : UIViewController, WKUIDelegate, WKNavigationDele
         self.view.backgroundColor = .white;
         self.view.addSubview(loadingIndicator);
         
-        loadingIndicator.activityIndicatorViewStyle = .gray;
+        loadingIndicator.activityIndicatorViewStyle = .whiteLarge;
+        loadingIndicator.color = .gray;
         loadingIndicator.hidesWhenStopped = true;
         
         loadingIndicator.layer.zPosition = 1;
-        loadingIndicator.frame.size = CGSize(width: 100, height: 100);
+        
         loadingIndicator.translatesAutoresizingMaskIntoConstraints = false;
         loadingIndicator.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true;
         loadingIndicator.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true;

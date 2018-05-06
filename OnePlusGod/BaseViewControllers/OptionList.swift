@@ -17,6 +17,8 @@ class OptionList : UITableViewController {
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad();
+        refreshControl?.endRefreshing();
         tableView.rowHeight = UITableViewAutomaticDimension;
         tableView.separatorInset = UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0);
         tableView.register(OptionListItemCell.self, forCellReuseIdentifier: "Option");
