@@ -114,7 +114,7 @@ class RequestTrip : FormViewController {
         setItemAtIndexPath(item: FormViewItem(title: "Leadership Type", options: RequestTrip.leaderTypes, keyboardType: .default, autocorrectionType: .default, autocapitalizationType: .none, usePicker: true, value: ""), indexPath: IndexPath(item: 4, section: 4));
         setItemAtIndexPath(item: FormViewItem(title: "Additional Information (Optional)", options: [], keyboardType: .default, autocorrectionType: .default, autocapitalizationType: .none, usePicker: false, value: ""), indexPath: IndexPath(item: 5, section: 4));
         
-        let nextButton = UIButton(type: .custom);
+        let nextButton = UIButton(type: .system);
         nextButton.setTitle("Next", for: .normal);
         nextButton.tintColor = .white;
         nextButton.setTitleColor(nextButton.tintColor, for: .normal);
@@ -220,7 +220,7 @@ class RequestTrip : FormViewController {
         (review.view as! UIScrollView).contentSize.width = self.view.frame.size.width;
         
         
-        let submitButton = UIButton(type: .custom);
+        let submitButton = UIButton(type: .system);
         submitButton.setTitle("Submit", for: .normal);
         submitButton.tintColor = .white;
         submitButton.setTitleColor(submitButton.tintColor, for: .normal);

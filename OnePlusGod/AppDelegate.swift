@@ -28,6 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UIApplication.shared.statusBarStyle = .lightContent
         
+        UITableViewHeaderFooterView.appearance().tintColor = .blue;
+        
         // Construct inital view, create a window
         window = UIWindow(frame: UIScreen.main.bounds);
         

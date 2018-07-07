@@ -52,7 +52,7 @@ class RequestEvent : FormViewController {
         setItemAtIndexPath(item: FormViewItem(title: "City", options: [], keyboardType: .default, autocorrectionType: .no, autocapitalizationType: .words, usePicker: false, value: ""), indexPath: IndexPath(item: 3, section: 4));
         setItemAtIndexPath(item: FormViewItem(title: "Additional Information (Optional)", options: [], keyboardType: .default, autocorrectionType: .default, autocapitalizationType: .none, usePicker: false, value: ""), indexPath: IndexPath(item: 4, section: 4));
         
-        let nextButton = UIButton(type: .custom);
+        let nextButton = UIButton(type: .system);
         nextButton.setTitle("Next", for: .normal);
         nextButton.tintColor = .white;
         nextButton.setTitleColor(nextButton.tintColor, for: .normal);
@@ -140,7 +140,7 @@ class RequestEvent : FormViewController {
         (review.view as! UIScrollView).contentSize.width = self.view.frame.size.width;
         
         
-        let submitButton = UIButton(type: .custom);
+        let submitButton = UIButton(type: .system);
         submitButton.setTitle("Submit", for: .normal);
         submitButton.tintColor = .white;
         submitButton.setTitleColor(submitButton.tintColor, for: .normal);

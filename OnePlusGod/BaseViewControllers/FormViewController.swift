@@ -34,6 +34,15 @@ class FormViewController : UITableViewController, UITextFieldDelegate {
         self.view.backgroundColor = .lightGray;
     }
     
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let view = view as? UITableViewHeaderFooterView {
+            view.backgroundView?.backgroundColor = .blue;
+            view.textLabel?.backgroundColor = .clear;
+            view.textLabel?.textColor = .white;
+        }
+        
+    }
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented");
     }

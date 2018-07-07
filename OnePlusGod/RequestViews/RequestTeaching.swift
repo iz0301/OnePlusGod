@@ -57,7 +57,7 @@ class RequestTeaching : FormViewController {
         setItemAtIndexPath(item: FormViewItem(title: "Type and purpose", options: [], keyboardType: .default, autocorrectionType: .default, autocapitalizationType: .sentences, usePicker: false, value: ""), indexPath: IndexPath(item: 1, section: 5));
         setItemAtIndexPath(item: FormViewItem(title: "Additional Information (Optional)", options: [], keyboardType: .default, autocorrectionType: .default, autocapitalizationType: .none, usePicker: false, value: ""), indexPath: IndexPath(item: 2, section: 5));
         
-        let nextButton = UIButton(type: .custom);
+        let nextButton = UIButton(type: .system);
         nextButton.setTitle("Next", for: .normal);
         nextButton.tintColor = .white;
         nextButton.setTitleColor(nextButton.tintColor, for: .normal);
@@ -145,7 +145,7 @@ class RequestTeaching : FormViewController {
         (review.view as! UIScrollView).contentSize.width = self.view.frame.size.width;
         
         
-        let submitButton = UIButton(type: .custom);
+        let submitButton = UIButton(type: .system);
         submitButton.setTitle("Submit", for: .normal);
         submitButton.tintColor = .white;
         submitButton.setTitleColor(submitButton.tintColor, for: .normal);
