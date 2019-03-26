@@ -19,7 +19,7 @@ class OptionList : UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad();
         refreshControl?.endRefreshing();
-        tableView.rowHeight = UITableViewAutomaticDimension;
+        tableView.rowHeight = UITableView.automaticDimension;
         tableView.separatorInset = UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0);
         tableView.register(OptionListItemCell.self, forCellReuseIdentifier: "Option");
         tableView.reloadData();
@@ -47,7 +47,7 @@ class OptionListItemCell : UITableViewCell {
     var customImageView = UIImageView();
     var customLabel = UILabel();
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?){
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?){
         super.init(style: .default, reuseIdentifier: "Option");
         
         customLabel.numberOfLines = 0;

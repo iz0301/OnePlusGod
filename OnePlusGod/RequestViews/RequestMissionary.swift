@@ -99,7 +99,7 @@ class RequestMissonary : FormViewController {
                 review.view.addSubview(label);
                 
                 //  3.
-                let attribute: NSLayoutAttribute = lastLabel == review.view ? .top : .bottom
+                let attribute: NSLayoutConstraint.Attribute = lastLabel == review.view ? .top : .bottom
                 
                 //  4.
                 let topEdgeConstraint = NSLayoutConstraint(item: label,

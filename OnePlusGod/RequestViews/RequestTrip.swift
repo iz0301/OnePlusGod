@@ -135,7 +135,7 @@ class RequestTrip : FormViewController {
         infoView.loadRequest(NSURLRequest(url: Bundle.main.url(forResource: "RequestInfo", withExtension: "html")!) as URLRequest);
         infoPopover.view = infoView;
         
-        infoPopoverNav.addChildViewController(infoPopover);
+        infoPopoverNav.addChild(infoPopover);
         infoPopoverNav.popoverPresentationController?.sourceView = self.navigationItem.leftBarButtonItem?.customView;
         present(infoPopoverNav, animated: true, completion: nil);
     }
@@ -174,7 +174,7 @@ class RequestTrip : FormViewController {
                 review.view.addSubview(label);
                 
                 //  3.
-                let attribute: NSLayoutAttribute = lastLabel == review.view ? .top : .bottom
+                let attribute: NSLayoutConstraint.Attribute = lastLabel == review.view ? .top : .bottom
                 
                 //  4.
                 let topEdgeConstraint = NSLayoutConstraint(item: label,

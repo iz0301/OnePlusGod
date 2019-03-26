@@ -66,7 +66,7 @@ class FormViewController : UITableViewController, UITextFieldDelegate {
         // Set up table:
         self.tableView.register(FormViewItemCell.self, forCellReuseIdentifier: "Identifier");
         self.tableView.allowsSelection = false;
-        self.tableView.rowHeight = UITableViewAutomaticDimension;
+        self.tableView.rowHeight = UITableView.automaticDimension;
         self.tableView.separatorInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20);
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard)));
     }
@@ -409,8 +409,8 @@ private class FormViewItemCell : UITableViewCell {
      */
     var usePicker : Bool = false;
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?){
-        super.init(style: UITableViewCellStyle.default, reuseIdentifier: "Identifier");
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?){
+        super.init(style: UITableViewCell.CellStyle.default, reuseIdentifier: "Identifier");
         self.optionsView.frame.size.height = 216;
         fieldView.frame = self.frame;
         fieldView.frame.origin.x += 10;

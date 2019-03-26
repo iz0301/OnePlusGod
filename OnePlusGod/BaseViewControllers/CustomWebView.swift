@@ -25,7 +25,7 @@ class CustomWebViewController : UIViewController, WKUIDelegate, WKNavigationDele
         self.view.backgroundColor = .white;
         self.view.addSubview(loadingIndicator);
         
-        loadingIndicator.activityIndicatorViewStyle = .whiteLarge;
+        loadingIndicator.style = .whiteLarge;
         loadingIndicator.color = .gray;
         loadingIndicator.hidesWhenStopped = true;
         
