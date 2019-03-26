@@ -14,7 +14,7 @@ class News : UITableViewController, WebImageDelegate {
         let alert = UIAlertController(title: "More", message: "For more information, please visit the website.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil));
         alert.addAction(UIAlertAction(title: "Go", style: .default, handler: {action in
-            UIApplication.shared.open(URL(string: "https://oneplusgod.org")!, options: [:], completionHandler: nil);
+            UIApplication.shared.open(URL(string: "https://oneplusgod.org")!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil);
         }));
         self.present(alert, animated: true, completion: nil);
     }
@@ -44,7 +44,7 @@ class News : UITableViewController, WebImageDelegate {
     override func viewDidLoad() {
         // Set up table:
         self.refreshControl = UIRefreshControl();
-        self.refreshControl?.addTarget(self, action: #selector(refreshNewsItems), for: UIControlEvents.valueChanged);
+        self.refreshControl?.addTarget(self, action: #selector(refreshNewsItems), for: UIControl.Event.valueChanged);
         self.refreshControl?.beginRefreshing();
         
         self.refreshControl?.backgroundColor = .white;
@@ -52,9 +52,9 @@ class News : UITableViewController, WebImageDelegate {
         self.tableView.register(NewsCell.self, forCellReuseIdentifier: "Identifier");
         
         self.tableView.allowsSelection = false;
-        self.tableView.rowHeight = UITableViewAutomaticDimension;
+        self.tableView.rowHeight = UITableView.automaticDimension;
         
-        self.newsItems.append(NewsItem(title: "Loading...", content: "", media: nil));
+        self.newsItems.append(NewsItem(title: "Loading...", content: "", media: nil, link: nil));
         
         // load news:
         self.refreshNewsItems();
@@ -102,6 +102,7 @@ struct NewsItem {
     var title : String;
     var content : String?;
     var media : WebImage?;
+    var link : String?;
     
     static func loadNewsItems(onImageLoad: WebImageDelegate) -> [ NewsItem ] {
         var newses = [NewsItem]();
@@ -110,11 +111,11 @@ struct NewsItem {
         
         do {
             let url = NSURL(string: myURLString);
-            let data = try String(contentsOf: url! as URL, encoding: String.Encoding.utf8);
+            let data = try String(contentsOf: url! as URL, encoding: String.Encoding.ascii);
             let rawNewsData = data.components(separatedBy: "\n###EON###\n");
             for rawData in rawNewsData {
                 if(rawData != "" && rawData.components(separatedBy: "::").count >= 2){
-                    var newsItem = NewsItem(title: "", content: "", media: nil);
+                    var newsItem = NewsItem(title: "", content: "", media: nil, link: nil);
                     newsItem.title = rawData.components(separatedBy: "::")[0];
                     newsItem.content = rawData.components(separatedBy: "::")[2];
                     if(rawData.components(separatedBy: "::")[1] != ""){
@@ -122,12 +123,29 @@ struct NewsItem {
                     } else {
                         newsItem.media = nil;
                     }
+                    
+                    newsItem.link = nil;
+                    if(newsItem.content?.contains("https") ?? false){
+                        let words = newsItem.content?.components(separatedBy: .whitespacesAndNewlines);
+                        for word in words!{
+                            if(word.starts(with: "http")){
+                                newsItem.link = word;
+                            }
+                        }
+                        if(newsItem.link != nil && newsItem.link != ""){
+                            newsItem.content = newsItem.content?.replacingOccurrences(of: newsItem.link!, with: "");
+                        }
+                        newsItem.content = newsItem.content?.trimmingCharacters(in: .whitespacesAndNewlines);
+                    } else {
+                        newsItem.link = nil;
+                    }
+                    
                     newses.append(newsItem);
                 }
             }
         } catch {
             print("Error getting news");
-            newses.append(NewsItem(title: "Error", content: "Could not load news right now. Please try again later.", media: nil));
+            newses.append(NewsItem(title: "Error", content: "Could not load news right now. Please try again later.", media: nil, link: nil));
         }
         return newses;
     }
@@ -140,8 +158,9 @@ class NewsCell : UITableViewCell {
     var mediaView = CustomUIImageView();
     var title = UILabel();
     var content = UILabel();
+    var link: String?;
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?){
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?){
         super.init(style: .default, reuseIdentifier: "Identifier");
         reinit();
     }
@@ -162,6 +181,12 @@ class NewsCell : UITableViewCell {
         self.contentView.addSubview(title);
         self.contentView.addSubview(content);
         self.contentView.addSubview(mediaView);
+
+        
+   
+        let onTap = UITapGestureRecognizer();
+        onTap.addTarget(self, action: #selector(goToLink));
+        self.addGestureRecognizer(onTap);
         
         mediaView.contentMode = .scaleAspectFit;
         mediaView.translatesAutoresizingMaskIntoConstraints = false;
@@ -187,15 +212,34 @@ class NewsCell : UITableViewCell {
         super.init(coder: aDecoder);
     }
     
+    @objc func goToLink(){
+        if(self.link != nil && self.link != ""){
+            let url = URL(string: self.link!);
+            UIApplication.shared.open(url!, options: [:], completionHandler: nil);
+        }
+    }
+    
     func prepareToShow(from: NewsItem){
         self.title.text =  from.title;
         self.content.text =  from.content;
+        self.link = from.link;
+        
         if(from.media != nil){
             mediaView.image = from.media?.image;
             layoutSubviews();
         } else {
             mediaView.image = nil;
         }
+        if(from.link != nil && from.link != ""){
+            self.accessoryType = .disclosureIndicator;
+        } else {
+            self.accessoryType = .none;
+        }
     }
     
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

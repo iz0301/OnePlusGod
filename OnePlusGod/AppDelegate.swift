@@ -12,21 +12,21 @@ import CFNetwork
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    
+    // url of server:
     static var server = "https://ironic-objectivist-202915.appspot.com";
     var window: UIWindow?
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions:       [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions:       [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         UINavigationBar.appearance().barTintColor = .blue;
         UINavigationBar.appearance().tintColor = .white;
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white];
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white];
         
         UITabBar.appearance().barTintColor = .blue;
         UITabBar.appearance().tintColor = .gray;
         UITabBar.appearance().unselectedItemTintColor = .white;
         
-        UIApplication.shared.statusBarStyle = .lightContent
+        //UIApplication.shared.statusBarStyle = .lightContent
         
         UITableViewHeaderFooterView.appearance().tintColor = .blue;
         
@@ -79,23 +79,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Set up the navagation controllers for each tab:
         let newsNav = UINavigationController();
         newsNav.title = "News";
-        newsNav.addChildViewController(News());
+        newsNav.addChild(News());
         
         let registerNav = UINavigationController();
         registerNav.title = "Register";
-        registerNav.addChildViewController(Register());
+        registerNav.addChild(Register());
         
         let requestNav = UINavigationController();
         requestNav.title = "Request";
-        requestNav.addChildViewController(Request());
+        requestNav.addChild(Request());
         
         let donateNav = UINavigationController();
         donateNav.title = "Donate";
-        donateNav.addChildViewController(Donate());
+        donateNav.addChild(Donate());
         
         let storeNav = UINavigationController();
         storeNav.title = "Store";
-        storeNav.addChildViewController(Store());
+        storeNav.addChild(Store());
         
         tabs.setViewControllers([ newsNav, registerNav, requestNav, donateNav, storeNav ], animated: true);
         tabs.tabBar.items?[0].image = #imageLiteral(resourceName: "NewsIcon");
@@ -160,7 +160,7 @@ class LocalNotificationHandler {
                 
                 notificationItem.title = String(datas[1]);
                 notificationItem.body = String(datas[2]);
-                notificationItem.sound = UNNotificationSound.default();
+                notificationItem.sound = UNNotificationSound.default;
                 
                 let time = Calendar.current.date(from: date)?.timeIntervalSinceNow;
                 if(!((time?.isLess(than: 0))!)){

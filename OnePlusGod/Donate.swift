@@ -48,7 +48,7 @@ class Donate : UIViewController {
     }
     
     @objc func toDonate(){
-        UIApplication.shared.open(URL(string: "https://oneplusgod.givingfuel.com/ministry-support")!, options: [:], completionHandler: nil);
+        UIApplication.shared.open(URL(string: "https://oneplusgod.givingfuel.com/ministry-support")!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil);
     }
     
     
@@ -59,4 +59,9 @@ class Donate : UIViewController {
     /*override func didReceiveMemoryWarning() {
         self.view = UIView();
     }*/
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

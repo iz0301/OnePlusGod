@@ -199,7 +199,7 @@ struct OccuranceItem {
         var occurrences = [OccuranceItem]();
         do {
             let url = NSURL(string: fromURL);
-            let allRawData = try String(contentsOf: url! as URL, encoding: String.Encoding.utf8);
+            let allRawData = try String(contentsOf: url! as URL, encoding: String.Encoding.ascii);
             let rawDatas = allRawData.components(separatedBy: "\n###EON###\n");
             for rawData in rawDatas {
                 if(rawData == ""){
@@ -262,6 +262,7 @@ struct OccuranceItem {
                 occurrences.append(OccuranceItem(imageIcon: icon, title: title, registerURL: registerURL, startDate: startDate, endDate: endDate, locationName: locationName, info: info, media: media, mediaImages: mediaImages));
             }
         } catch {
+            print("Error info: \(error)");
             print("Error getting trips/events");
             occurrences.append(OccuranceItem(imageIcon: nil, title: "Error", registerURL: "", startDate: "", endDate: "", locationName: "", info: "There was an error loading info, make sure you are connected to internet and try again.", media: "", mediaImages: [WebImage]()));
         }
@@ -290,7 +291,7 @@ class OccurrenceItemView : UITableViewController {
         
         self.title = with.title;
         self.tableView.allowsSelection = false;
-        self.tableView.rowHeight = UITableViewAutomaticDimension;
+        self.tableView.rowHeight = UITableView.automaticDimension;
         self.tableView.separatorInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5);
         refreshCells();
     }
